@@ -1,6 +1,7 @@
 //Getting the right city from API
 const cityInputElement = document.getElementById('city');
 const findBtn = document.getElementById('form');
+const weatherContainer = document.getElementById('container2');
 
 let cityName;
 
@@ -58,9 +59,15 @@ const findCity = (e) =>{
         img.src = `http://openweathermap.org/img/w/${image}.png`;
 
     })
-    .catch(err=>console.log(err));
+    .catch(err=>{
+        if(err) {
+            alert('City not found!')
+            cityInputElement.value = '';
+            weatherContainer.style.display = 'none'
+        }
+    });
 
-    document.getElementById('container2').style.display = 'block'
+    weatherContainer.style.display = 'block'
 
 };
 
